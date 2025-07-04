@@ -1,0 +1,14 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" xmlns:concept="Concept.UI" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.conceptfactory.ui.essentials/Runtime/Resources/Widgets/TabView/TabView.uss?fileID=7433441132597879392&amp;guid=996b9bfe26bdd1b4d876b7b3d31b51d1&amp;type=3#TabView" />
+
+    <concept:TabView name="TabView" class="tabview-root">
+    
+        <engine:VisualElement name="header" class="tabview-header">
+     
+        </engine:VisualElement>
+
+        <engine:VisualElement name="content" class="tabview-content">
+
+        </engine:VisualElement>
+    </concept:TabView>
+</engine:UXML>
