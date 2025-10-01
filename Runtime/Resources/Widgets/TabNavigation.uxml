@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:custom="Quantum.UI" xmlns:concept="Concept.UI" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/Scripts/UI/Interface/Resources/TabNavigationStyles.uss?fileID=7433441132597879392&amp;guid=61d4da483f9b2b94787cb0cf68edbf2c&amp;type=3" />
+    <ui:VisualElement name="TabNavigation" class="tab-navigation">
+        <concept:LButton text="Apostas" name="ButtonBets" key="INFO_NAV_BETS" class="tab-button active" />
+        <concept:LButton text="Anterior" name="ButtonPrevious" key="INFO_NAV_PREV" class="tab-button" />
+        <concept:LButton text="Topo" name="ButonTop" key="INFO_NAV_TOP" class="tab-button" style="align-self: stretch;" />
+    </ui:VisualElement>
+</ui:UXML>

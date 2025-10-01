@@ -1,0 +1,90 @@
+.tab-navigation {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border-radius: 16px;
+    margin: 15px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    background-color: rgb(20, 21, 22);
+    border-top-width: 0;
+    align-content: auto;
+    align-self: center;
+    padding-top: 2px;
+    padding-right: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    width: auto;
+    justify-content: space-evenly;
+    height: 36px;
+    align-items: center;
+}
+
+.tab-navigation .tab-button {
+    padding: 10px;
+    background-color: transparent;
+    -unity-font-style: bold;
+    border-radius: 6px;
+    -unity-text-align: middle-center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    color: rgb(163, 163, 163);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    height: auto;
+    margin-top: 2px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: auto;
+    flex-grow: 1;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    margin-left: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    align-self: stretch;
+    font-size: 14px;
+}
+
+.tab-navigation .tab-button.active {
+    color: white;
+    display: flex;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgb(44, 45, 48);
+    padding-top: 4px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    height: auto;
+    width: auto;
+    flex-grow: 1;
+    padding-right: 8px;
+    padding-bottom: 2px;
+    padding-left: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
+    align-self: stretch;
+    align-content: center;
+    font-size: 14px;
+}
+
+.tab-navigation .tab-button:hover {
+    color: var(--red);
+}
+
+.tab-navigation .tab-button.active:hover {
+    color: white;
+}
