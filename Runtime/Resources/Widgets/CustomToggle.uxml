@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:custom="Quantum.UI" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_src/Scripts/UI/interface/Resources/CustomToggleStyles.uss?fileID=7433441132597879392&amp;guid=4a4738575ecc0ca4fa09c1f1290a5b44&amp;type=3#CustomToggleStyles" />
+    <ui:VisualElement name="CustomToggle" class="cash-out-switcher" style="display: flex;">
+        <ui:Label text="Levantar Auto" name="Label" class="toggle-label" style="-unity-text-align: middle-left; align-self: center; align-content: center;" />
+        <ui:VisualElement name="ToggleButton" class="input-switch off">
+            <ui:VisualElement name="ToggleIco" is-label-left="false" class="oval" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
