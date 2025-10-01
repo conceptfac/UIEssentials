@@ -100,7 +100,7 @@ namespace Concept.UI
                 IsChecked = !IsChecked;
             });
 
-            styleSheets.Add(Resources.Load<StyleSheet>(GetType().Name + "Styles"));
+            styleSheets.Add(Resources.Load<StyleSheet>("Widgets/"+ GetType().Name + "Styles"));
            
             /*
             LocalizationSettings.SelectedLocaleChanged += UpdateText;
