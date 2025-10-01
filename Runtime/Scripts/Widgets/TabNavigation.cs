@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -34,6 +35,7 @@ namespace Concept.UI
                 UpdateTabButtons();
             }
         }
+ 
         public Action<int> OnTabSelect;
 
         public TabNavigation()
@@ -71,7 +73,7 @@ namespace Concept.UI
                 tabBt.collection = "UI";
                 tabBt.key = m_tabButtons[i];
 
-                tabBt.clicked += () => OnTabButtonClicked(id);
+                tabBt.clicked += () => SelectIndex(id);
                 tabBt.AddToClassList("tab-button");
                 if (i == index)
                     tabBt.AddToClassList("active");
@@ -82,11 +84,11 @@ namespace Concept.UI
 
         }
 
-        void OnTabButtonClicked(int id)
+        public void SelectIndex(int index)
         {
-            index = id;
+            this.index = index;
             UpdateTabButtons();
-            OnTabSelect?.Invoke(id);
+            OnTabSelect?.Invoke(index);
 
         }
     }
