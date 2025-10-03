@@ -1,5 +1,5 @@
 {
-    "name": "com.conceptfactory.ui.essentials",
+    "name": "ConceptFactory.UIEssentials",
     "rootNamespace": "Concept.UI",
     "references": [
         "GUID:5dce1e5efc474ce4791e7ab351a3ddb4",
