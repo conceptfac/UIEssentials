@@ -71,13 +71,15 @@ namespace Concept.UI
             float aspectRatio = (float)_currentTexture.height / _currentTexture.width;
             float calculatedHeight = width * aspectRatio;
 
+            /*
             if (calculatedHeight > 0 && !float.IsNaN(calculatedHeight))
             {
-                style.height = calculatedHeight;
+              style.height = calculatedHeight;
 
-                // Força o redesenho
+                Força o redesenho
                 this.MarkDirtyRepaint();
             }
+            */
         }
 
 
