@@ -65,10 +65,8 @@ namespace Concept.UI
             for (int i = 0; i < m_tabButtons.Length; i++)
             {
                 int id = i;
-                var tabBt = new LButton();
-                tabBt.collection = "UI";
-                tabBt.key = m_tabButtons[i];
-
+                var tabBt = new Button();
+                tabBt.text = m_tabButtons[i];
                 tabBt.clicked += () => SelectIndex(id);
                 tabBt.AddToClassList("tab-button");
                 if (i == index)
