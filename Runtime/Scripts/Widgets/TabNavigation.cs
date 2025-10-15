@@ -21,7 +21,7 @@ namespace Concept.UI
 
         public int index = 0;
 
-        private string[] m_tabButtons;
+        protected string[] m_tabButtons;
 
         [UxmlAttribute("tab-buttons")]
         public string[] tabButtons
@@ -58,8 +58,10 @@ namespace Concept.UI
         }
 
 
-        void UpdateTabButtons()
+        protected virtual void UpdateTabButtons()
         {
+            Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
+
             Clear();
 
             for (int i = 0; i < m_tabButtons.Length; i++)
