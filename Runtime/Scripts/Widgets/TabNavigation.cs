@@ -18,12 +18,10 @@ namespace Concept.UI
     {
         private const string USSClassName = "tab-navigation";
 
-        private readonly VisualElement m_root;
-        public VisualElement Root => m_root;
 
         public int index = 0;
 
-        private string[] m_tabButtons;
+        protected string[] m_tabButtons;
 
         [UxmlAttribute("tab-buttons")]
         public string[] tabButtons
@@ -49,11 +47,9 @@ namespace Concept.UI
                 return;
             }
 
-            m_root = visualTree.CloneTree();
-            m_root.AddToClassList(USSClassName);
-            hierarchy.Add(m_root);
-
-
+            visualTree.CloneTree(this);
+            AddToClassList(USSClassName);
+            
             RegisterCallback<GeometryChangedEvent>(evt =>
             {
                  UpdateTabButtons();
@@ -62,24 +58,24 @@ namespace Concept.UI
         }
 
 
-        void UpdateTabButtons()
+        protected virtual void UpdateTabButtons()
         {
-            m_root.Clear();
+            Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
+
+            Clear();
 
             for (int i = 0; i < m_tabButtons.Length; i++)
             {
                 int id = i;
-                var tabBt = new LButton();
-                tabBt.collection = "UI";
-                tabBt.key = m_tabButtons[i];
-
+                var tabBt = new Button();
+                tabBt.text = m_tabButtons[i];
                 tabBt.clicked += () => SelectIndex(id);
                 tabBt.AddToClassList("tab-button");
                 if (i == index)
                     tabBt.AddToClassList("active");
                 else
                     tabBt.RemoveFromClassList("active");
-                m_root.Add(tabBt);
+                Add(tabBt);
             }
 
         }
