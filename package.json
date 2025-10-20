@@ -1,33 +1,33 @@
 {
-  "name": "com.conceptfactory.ui.essentials",
-  "displayName": "Concept Factory - UI Essentials",
-  "version": "1.0.0",
-  "type": "tool",
-  "unity": "6000.0",
-  "unityRelease": "43f1",
-  "description": "A Unity UI Tool Kit add-ons.",
-  "documentationUrl": "",
-  "changelogUrl": "",
-  "license": "Source-Available – No Modification",
-  "licensesUrl": "SEE LICENSE FILE",
-  "keywords": [],
-  "author": {
-    "name": "Concept Factory",
-    "email": "conceptfac@gmail.com",
-    "url": ""
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/conceptfac/UIEssentials.git"
-  },
-  "dependencies": {
-    "com.conceptfactory.core": "1.0.0"
-  },
-  "samples": [
-    {
-      "displayName": "UI Examples",
-      "description": "Example scenes demonstrating how to use the UI Essentials tool kit.\nhttps://github.com/conceptfac/UIEssentials.git",
-      "path": "Samples~/Scenes"
-    }
-  ]
+    "name": "com.conceptfactory.ui.essentials",
+    "displayName": "Concept Factory - UI Essentials",
+    "version": "1.0.1",
+    "type": "tool",
+    "unity": "6000.0",
+    "unityRelease": "43f1",
+    "description": "A Unity UI Tool Kit add-ons.\n\nhttps://github.com/conceptfac/UIEssentials.git",
+    "documentationUrl": "",
+    "changelogUrl": "",
+    "license": "Source-Available – No Modification",
+    "licensesUrl": "SEE LICENSE FILE",
+    "keywords": [],
+    "author": {
+        "name": "Concept Factory",
+        "email": "conceptfac@gmail.com",
+        "url": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/conceptfac/UIEssentials.git"
+    },
+    "dependencies": {
+        "com.conceptfactory.core": "1.0.0"
+    },
+    "samples": [
+        {
+            "displayName": "UI Examples",
+            "description": "Example scenes demonstrating how to use the UI Essentials tool kit.\nhttps://github.com/conceptfac/UIEssentials.git",
+            "path": "Samples~/Scenes"
+        }
+    ]
 }
