@@ -10,15 +10,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [
-        "CONCEPT_LOCALIZATION"
-    ],
-    "versionDefines": [
-        {
-            "name": "com.unity.localization",
-            "expression": "1.5.7",
-            "define": "CONCEPT_LOCALIZATION"
-        }
-    ],
+    "defineConstraints": [],
+    "versionDefines": [],
     "noEngineReferences": false
 }
