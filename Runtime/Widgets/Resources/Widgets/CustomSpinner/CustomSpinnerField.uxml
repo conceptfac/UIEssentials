@@ -1,5 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:custom="Quantum.UI" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/_src/Scripts/UI/Interface/Resources/CustomSpinnerStyles.uss?fileID=7433441132597879392&amp;guid=4ef30a61581c24c4781e1c7023e6df25&amp;type=3#CustomSpinnerStyles" />
+    <Style src="project://database/Packages/com.conceptfactory.ui.essentials/Runtime/Widgets/Resources/Widgets/CustomSpinner/CustomSpinnerStyles.uss?fileID=7433441132597879392&amp;guid=771e957d295cb474491623b24ac7ddd1&amp;type=3#CustomSpinnerStyles" />
     <ui:VisualElement name="SpinnerField" class="spinner-field" style="width: 100%; font-size: 16px;">
         <ui:Button name="DecreaseButton" class="active button" style="background-image: resource(&apos;icons/Icons_minus&apos;);" />
         <ui:TextField value="1,00" name="InputValue" password="false" keyboard-type="NumberPad" class="amount-input" />
