@@ -2,8 +2,7 @@
     "name": "ConceptFactory.UIEssentials",
     "rootNamespace": "Concept.UI",
     "references": [
-        "GUID:5dce1e5efc474ce4791e7ab351a3ddb4",
-        "GUID:d10cdd589f7526944a0574389d8cd9f5"
+        "GUID:5dce1e5efc474ce4791e7ab351a3ddb4"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -11,15 +10,7 @@
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
-    "defineConstraints": [
-        "CONCEPT_LOCALIZATION"
-    ],
-    "versionDefines": [
-        {
-            "name": "com.unity.localization",
-            "expression": "1.5.7",
-            "define": "CONCEPT_LOCALIZATION"
-        }
-    ],
+    "defineConstraints": [],
+    "versionDefines": [],
     "noEngineReferences": false
 }

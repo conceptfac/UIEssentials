@@ -1,0 +1,26 @@
+{
+    "name": "ConceptFactory.UIEssentials.Localized",
+    "rootNamespace": "Concept.UI",
+    "references": [
+        "GUID:5dce1e5efc474ce4791e7ab351a3ddb4",
+        "GUID:d10cdd589f7526944a0574389d8cd9f5",
+        "GUID:e5b236249dae87640a12b6bc9898605b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "CONCEPT_LOCALIZATION"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.localization",
+            "expression": "1.5.7",
+            "define": "CONCEPT_LOCALIZATION"
+        }
+    ],
+    "noEngineReferences": false
+}
