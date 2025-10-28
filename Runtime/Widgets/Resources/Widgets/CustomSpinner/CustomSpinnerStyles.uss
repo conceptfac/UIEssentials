@@ -1,0 +1,169 @@
+TextField #unity-text-input {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-left-color: rgb(0, 0, 255);
+    border-top-color: rgb(0, 0, 255);
+    border-bottom-color: rgb(0, 0, 255);
+}
+
+.spinner-field {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    border-radius: 16px;
+    margin: 15px;
+    background-color: rgb(20, 21, 22);
+    border-top-width: 0;
+    align-content: auto;
+    align-self: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    align-items: center;
+    justify-content: space-evenly;
+    min-width: 136px;
+    height: 36px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 18px;
+    width: auto;
+}
+
+.button {
+    padding: 10px;
+    background-color: transparent;
+    -unity-font-style: bold;
+    border-radius: 6px;
+    -unity-text-align: middle-center;
+    display: flex;
+    color: rgb(163, 163, 163);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    flex-grow: 0;
+    align-self: stretch;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    flex-basis: 32px;
+    height: auto;
+    width: auto;
+}
+
+.button.active {
+    color: white;
+    display: flex;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    background-color: rgb(44, 45, 48);
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    margin-top: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    flex-grow: 0;
+    width: auto;
+    height: auto;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.bet-nav-tab:hover {
+    color: var(--red);
+}
+
+.bet-nav-tab.active:hover {
+    color: white;
+}
+
+.bet-amount-control {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.minus-btn {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.plus-btn {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.amount-input {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    --unity-selection-color: yellow;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: clip;
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    background-repeat: no-repeat no-repeat;
+    background-position-x: center;
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-type: tiled;
+    padding-left: 4px;
+    flex-grow: 1;
+    height: auto;
+    width: auto;
+    padding-right: 4px;
+    flex-shrink: 1;
+    align-self: stretch;
+    font-size: 16px;
+    -unity-font-style: bold;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.amount-input .unity-base-text-field__input {
+    flex: 1;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -unity-text-align: middle-center;
+    height: 100%;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
