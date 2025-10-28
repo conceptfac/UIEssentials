@@ -38,7 +38,6 @@ namespace Concept.UI
 
         public TabNavigation()
         {
-            AddToClassList(USSClassName);
 
             var visualTree = Resources.Load<VisualTreeAsset>("Widgets/TabNavigation");
             if (visualTree == null)
@@ -60,10 +59,12 @@ namespace Concept.UI
 
         protected virtual void UpdateTabButtons()
         {
-            Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
+          //  Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
+
+
 
             Clear();
-
+            if (m_tabButtons == null) return;
             for (int i = 0; i < m_tabButtons.Length; i++)
             {
                 int id = i;
