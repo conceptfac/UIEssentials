@@ -1,0 +1,16 @@
+{
+    "name": "ConceptFactory.UIEssentials.Editor",
+    "rootNamespace": "Concept.UI",
+    "references": [
+        "GUID:e5b236249dae87640a12b6bc9898605b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

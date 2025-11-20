@@ -88,6 +88,9 @@ namespace Concept.UI
             OnTabSelect?.Invoke(index);
 
         }
+
+        public List<Button> GetButtonsList() => this.Query<Button>().ToList();
+
     }
 
     [UxmlElement]
