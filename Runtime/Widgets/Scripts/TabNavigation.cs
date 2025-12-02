@@ -18,13 +18,15 @@ namespace Concept.UI
     {
         private const string USSClassName = "tab-navigation";
 
+        private List<(string, VisualElement)> m_tabsContent = new List<(string, VisualElement)>();
+
 
         public int index = 0;
 
-        protected string[] m_tabButtons;
+        protected List<string> m_tabButtons = new List<string>();
 
         [UxmlAttribute("tab-buttons")]
-        public string[] tabButtons
+        public List<string> tabButtons
         {
             get => m_tabButtons; set
             {
@@ -33,7 +35,7 @@ namespace Concept.UI
                 UpdateTabButtons();
             }
         }
- 
+
         public Action<int> OnTabSelect;
 
         public TabNavigation()
@@ -48,10 +50,10 @@ namespace Concept.UI
 
             visualTree.CloneTree(this);
             AddToClassList(USSClassName);
-            
+
             RegisterCallback<GeometryChangedEvent>(evt =>
             {
-                 UpdateTabButtons();
+                UpdateTabButtons();
             });
 
         }
@@ -59,13 +61,13 @@ namespace Concept.UI
 
         protected virtual void UpdateTabButtons()
         {
-          //  Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
+            //  Debug.LogWarning(this.name + ":" + m_tabButtons.Length + " (BASE)");
 
 
 
             Clear();
             if (m_tabButtons == null) return;
-            for (int i = 0; i < m_tabButtons.Length; i++)
+            for (int i = 0; i < m_tabButtons.Count; i++)
             {
                 int id = i;
                 var tabBt = new Button();
@@ -85,11 +87,45 @@ namespace Concept.UI
         {
             this.index = index;
             UpdateTabButtons();
-            OnTabSelect?.Invoke(index);
 
+            for (int i = 0; i < m_tabsContent.Count; i++)
+            {
+                m_tabsContent[i].Item2.style.display = (i == index) ? DisplayStyle.Flex : DisplayStyle.None;
+            }
+
+            OnTabSelect?.Invoke(index);
         }
 
         public List<Button> GetButtonsList() => this.Query<Button>().ToList();
+
+        public void SetTabsContent(List<(string, VisualElement)> tabsContent)
+        {
+            ClearTabs();
+            foreach (var item in tabsContent) AddTab(item);
+            SelectIndex(0);
+        }
+
+        public void AddTab((string, VisualElement) tab)
+        {
+            m_tabButtons.Add(tab.Item1);
+            m_tabsContent .Add(tab);
+        }
+
+
+        public void RemoveTab(int tabIndex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveTab(string tabName)
+        {
+            throw new NotImplementedException();
+        }
+        public void ClearTabs()
+        {
+            m_tabButtons.Clear();
+            m_tabsContent.Clear();
+        }
 
     }
 
