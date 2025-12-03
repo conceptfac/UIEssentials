@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
@@ -8,7 +9,7 @@ namespace Concept.UI
 {
 
     [UxmlElement]
-    public partial class CustomToggle : VisualElement
+    public partial class CustomToggle : BindableElement
     {
         private const string USSClassName = "custom-toggle";
 
@@ -34,30 +35,70 @@ namespace Concept.UI
 
         [UxmlAttribute("text")] 
         public string text { get => m_label.text; set => m_label.text = value; }
-        
         private bool m_isChecked = false;
-        [UxmlAttribute("checked")] 
+        [Bindable(BindableSupport.Yes)][UxmlAttribute("checked")]
         public bool IsChecked
         {
             get => m_isChecked;
             set
             {
                 if (m_isChecked == value) return;
+
+                var previousValue = m_isChecked;
                 m_isChecked = value;
-                m_toggleButton.style.flexDirection = value ? FlexDirection.RowReverse : FlexDirection.Row;
-                if(value)
-                    {
-                    m_label.AddToClassList("active");
-                    m_toggleButton.Q<VisualElement>("ToggleIco").AddToClassList("active");
-                }
-                else
-                {
-                    m_label.RemoveFromClassList("active");
-                    m_toggleButton.Q<VisualElement>("ToggleIco").RemoveFromClassList("active");
-                }
+
+                // 1. Atualiza o visual (chama o método auxiliar)
+                UpdateVisualState();
+
+                // 2. Notifica listeners customizados
                 OnToggleChanged?.Invoke(value);
+
+                // 3. Dispara evento para o sistema de binding
+                if (panel != null)
+                {
+                    using (ChangeEvent<bool> evt = ChangeEvent<bool>.GetPooled(previousValue, value))
+                    {
+                        evt.target = this;
+                        SendEvent(evt);
+                    }
+                }
+
+                // 4. Marca para repaint (APENAS UMA VEZ)
                 MarkDirtyRepaint();
             }
+        }
+
+        // MÉTODO AUXILIAR QUE VOCÊ PRECISA CRIAR
+        private void UpdateVisualState()
+        {
+            if (m_toggleButton == null) return;
+
+            // Atualiza a direção do flex
+            m_toggleButton.style.flexDirection = m_isChecked ?
+                FlexDirection.RowReverse :
+                FlexDirection.Row;
+
+            // Atualiza as classes CSS
+            if (m_isChecked)
+            {
+                m_label.AddToClassList("active");
+                m_toggleButton.Q<VisualElement>("ToggleIco").AddToClassList("active");
+            }
+            else
+            {
+                m_label.RemoveFromClassList("active");
+                m_toggleButton.Q<VisualElement>("ToggleIco").RemoveFromClassList("active");
+            }
+        }
+
+        // MÉTODO NECESSÁRIO PARA BINDING
+        public void SetValueWithoutNotify(bool newValue)
+        {
+            if (m_isChecked == newValue) return;
+
+            m_isChecked = newValue;
+            UpdateVisualState();  // Apenas atualiza visual, SEM disparar eventos
+            MarkDirtyRepaint();
         }
 
 

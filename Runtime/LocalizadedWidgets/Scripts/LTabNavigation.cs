@@ -48,7 +48,7 @@ namespace Concept.UI
         {
 
             List<string> captions = new List<string>();
-            for (int i = 0; i < m_tabButtons.Length; i++)
+            for (int i = 0; i < m_tabButtons.Count; i++)
             {
                 string key = m_tabButtons[i];
                 var (success, text) = await LocalizationProvider.GetLocalizedStringAsync(collection, key);
