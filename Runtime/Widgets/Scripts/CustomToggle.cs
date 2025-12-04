@@ -9,14 +9,14 @@ namespace Concept.UI
 {
 
     [UxmlElement]
-    public partial class CustomToggle : BindableElement
+    public partial class CustomToggle : Toggle
     {
         private const string USSClassName = "custom-toggle";
 
-        private Label m_label;
-
         private VisualElement m_toggleButton;
         
+
+        /*
         private bool m_isLabelLeft = true;
 
 
@@ -32,75 +32,48 @@ namespace Concept.UI
                 MarkDirtyRepaint();
             }
         }
+     */
 
-        [UxmlAttribute("text")] 
-        public string text { get => m_label.text; set => m_label.text = value; }
-        private bool m_isChecked = false;
-        [Bindable(BindableSupport.Yes)][UxmlAttribute("checked")]
-        public bool IsChecked
+        public void SetValue(bool value)
         {
-            get => m_isChecked;
-            set
-            {
-                if (m_isChecked == value) return;
-
-                var previousValue = m_isChecked;
-                m_isChecked = value;
-
-                // 1. Atualiza o visual (chama o método auxiliar)
-                UpdateVisualState();
-
-                // 2. Notifica listeners customizados
-                OnToggleChanged?.Invoke(value);
-
-                // 3. Dispara evento para o sistema de binding
-                if (panel != null)
-                {
-                    using (ChangeEvent<bool> evt = ChangeEvent<bool>.GetPooled(previousValue, value))
-                    {
-                        evt.target = this;
-                        SendEvent(evt);
-                    }
-                }
-
-                // 4. Marca para repaint (APENAS UMA VEZ)
-                MarkDirtyRepaint();
-            }
+            this.value = value;
+            UpdateVisualState();
+            OnToggleChanged?.Invoke(value);
         }
 
-        // MÉTODO AUXILIAR QUE VOCÊ PRECISA CRIAR
         private void UpdateVisualState()
         {
             if (m_toggleButton == null) return;
 
             // Atualiza a direção do flex
-            m_toggleButton.style.flexDirection = m_isChecked ?
+            m_toggleButton.style.flexDirection = value ?
                 FlexDirection.RowReverse :
                 FlexDirection.Row;
 
             // Atualiza as classes CSS
-            if (m_isChecked)
+            if (value)
             {
-                m_label.AddToClassList("active");
+                labelElement.AddToClassList("active");
                 m_toggleButton.Q<VisualElement>("ToggleIco").AddToClassList("active");
             }
             else
             {
-                m_label.RemoveFromClassList("active");
+                labelElement.RemoveFromClassList("active");
                 m_toggleButton.Q<VisualElement>("ToggleIco").RemoveFromClassList("active");
             }
         }
 
+        /*
         // MÉTODO NECESSÁRIO PARA BINDING
         public void SetValueWithoutNotify(bool newValue)
         {
-            if (m_isChecked == newValue) return;
+            if (value == newValue) return;
 
-            m_isChecked = newValue;
+            value = newValue;
             UpdateVisualState();  // Apenas atualiza visual, SEM disparar eventos
             MarkDirtyRepaint();
         }
-
+        */
 
         [UxmlAttribute("collection")]
         public string collection { get; set; } = "UI";
@@ -131,14 +104,22 @@ namespace Concept.UI
             }
 
             visualTree.CloneTree(this);
-            
-            
-            m_label = this.Q<Label>("Label");
+
+            var checkMark = this.Q<VisualElement>("unity-checkmark").parent;
+            checkMark.style.display = DisplayStyle.None;
             m_toggleButton = this.Q<VisualElement>("ToggleButton");
 
             m_toggleButton.RegisterCallback<ClickEvent>(evt =>
             {
-                IsChecked = !IsChecked;
+                value = !value;
+            });
+
+
+
+            this.RegisterValueChangedCallback((evt) => {
+
+                UpdateVisualState();
+                OnToggleChanged?.Invoke(value);
             });
 
             styleSheets.Add(Resources.Load<StyleSheet>("Widgets/"+ GetType().Name + "Styles"));
@@ -153,6 +134,9 @@ namespace Concept.UI
 
         }
 
+
+        
+
         /*
         private void UpdateText(Locale locale)
         {
@@ -162,30 +146,6 @@ namespace Concept.UI
            // m_label.SetLocalizationText(collection, key);
         }
         */
-
-
-        private void UpdateLabelPosition()
-        {
-            if (this == null) return;
-            var labelParent = m_label.parent;
-            var parent = m_toggleButton.parent;
-
-
-
-            labelParent.Remove(m_label);
-            parent.Remove(m_toggleButton);
-
-            if (IsLabelLeft)
-            {
-                labelParent.Add(m_label);
-                parent.Add(m_toggleButton);
-            }
-            else
-            {
-                parent.Add(m_toggleButton);
-                labelParent.Add(m_label);
-            }
-        }
 
 
         public void AnimateToPosition(float targetX, float targetY, int durationMs = 300,
