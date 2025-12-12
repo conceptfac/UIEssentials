@@ -45,7 +45,7 @@ namespace Concept.UI
         {
             if (m_toggleButton == null) return;
 
-            // Atualiza a direção do flex
+            // Atualiza a direï¿½ï¿½o do flex
             m_toggleButton.style.flexDirection = value ?
                 FlexDirection.RowReverse :
                 FlexDirection.Row;
@@ -64,7 +64,7 @@ namespace Concept.UI
         }
 
         /*
-        // MÉTODO NECESSÁRIO PARA BINDING
+        // Mï¿½TODO NECESSï¿½RIO PARA BINDING
         public void SetValueWithoutNotify(bool newValue)
         {
             if (value == newValue) return;
@@ -99,7 +99,7 @@ namespace Concept.UI
             var visualTree = Resources.Load<VisualTreeAsset>("Widgets/CustomToggle");
             if (visualTree == null)
             {
-                Debug.LogError("CustomToggle não encontrado em Resources!");
+                Debug.LogError("CustomToggle nï¿½o encontrado em Resources!");
                 return;
             }
 
@@ -151,20 +151,20 @@ namespace Concept.UI
         public void AnimateToPosition(float targetX, float targetY, int durationMs = 300,
     Action onComplete = null, Func<float, float> easing = null)
         {
-            // 1. Primeiro forçamos a posição absoluta
+            // 1. Primeiro forï¿½amos a posiï¿½ï¿½o absoluta
             style.position = Position.Absolute;
 
-            // 2. Pegamos a posição VISUAL atual relativa ao parent
+            // 2. Pegamos a posiï¿½ï¿½o VISUAL atual relativa ao parent
             var currentPos = this.GetRelativePositionToParent();
 
-            // 3. Definimos explicitamente a posição inicial
+            // 3. Definimos explicitamente a posiï¿½ï¿½o inicial
             style.left = currentPos.x;
             style.top = currentPos.y;
 
-            // 4. Esperamos o próximo frame para garantir que o layout foi atualizado
+            // 4. Esperamos o prï¿½ximo frame para garantir que o layout foi atualizado
             schedule.Execute(() =>
             {
-                // 5. Agora sim iniciamos a animação
+                // 5. Agora sim iniciamos a animaï¿½ï¿½o
                 this.experimental.animation
                     .Start(new StyleValues
                     {
@@ -173,15 +173,15 @@ namespace Concept.UI
                     }, durationMs)
                     .Ease(easing ?? Easing.OutQuad)
                     .OnCompleted(() => onComplete?.Invoke());
-            }).StartingIn(0); // Próximo frame
+            }).StartingIn(0); // Prï¿½ximo frame
         }
 
-        // Método auxiliar para pegar posição relativa
+        // Mï¿½todo auxiliar para pegar posiï¿½ï¿½o relativa
         private Vector2 GetRelativePositionToParent()
         {
             if (parent == null) return Vector2.zero;
 
-            // Calcula a posição relativa considerando transforms e pivots
+            // Calcula a posiï¿½ï¿½o relativa considerando transforms e pivots
             var worldPos = worldTransform.MultiplyPoint3x4(Vector3.zero);
             var parentWorldPos = parent.worldTransform.MultiplyPoint3x4(Vector3.zero);
 
