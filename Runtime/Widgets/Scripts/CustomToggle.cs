@@ -123,7 +123,7 @@ namespace Concept.UI
             });
 
             styleSheets.Add(Resources.Load<StyleSheet>("Widgets/"+ GetType().Name + "Styles"));
-           
+
             /*
             LocalizationSettings.SelectedLocaleChanged += UpdateText;
             RegisterCallback<DetachFromPanelEvent>(evt =>
@@ -131,6 +131,12 @@ namespace Concept.UI
                 LocalizationSettings.SelectedLocaleChanged -= UpdateText;
             });
             */
+
+            this.RegisterCallback<AttachToPanelEvent>(evt => { 
+            
+                UpdateVisualState();
+            
+            });
 
         }
 
