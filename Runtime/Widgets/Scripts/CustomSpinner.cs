@@ -48,11 +48,11 @@ namespace Concept.UI
 
         [UxmlAttribute("min-value")]
         [Tooltip("Integer value with decimals\nEx: 100 = 1.00")]
-        [SerializeField] public int minValue { get; set; } = 0;
+        public int minValue { get; set; } = 0;
 
         [UxmlAttribute("max-value")]
         [Tooltip("Integer value with decimals\nEx: 100 = 1.00\n0 is infinite.")]
-        [SerializeField] public int maxValue { get; set; } = 0;
+        public int maxValue { get; set; } = 0;
 
         public int Value
         {
