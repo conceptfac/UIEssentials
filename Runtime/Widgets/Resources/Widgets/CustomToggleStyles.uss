@@ -1,7 +1,6 @@
 .cash-out-switcher {
     flex-direction: row;
     align-items: center;
-    gap: 10px;
 }
 
 .input-switch {
@@ -47,13 +46,20 @@
     left: 26px;
 }
 
-.toggle-label {
-    color: rgb(163, 163, 163);
-    font-size: 12px;
+.custom-toggle .unity-toggle__label {
+    font-size: 14px;
     -unity-text-align: middle-left;
-    white-space: nowrap;
+    min-width: auto;
 }
 
-.toggle-label.active {
+.custom-toggle .unity-toggle__label.active {
     color: rgb(255, 255, 255);
 }
+
+.custom-toggle {
+    flex-direction: row-reverse;
+    align-self: flex-start;
+    align-items: center;
+}
+
+

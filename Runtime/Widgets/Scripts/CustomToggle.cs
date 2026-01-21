@@ -9,14 +9,14 @@ namespace Concept.UI
 {
 
     [UxmlElement]
-    public partial class CustomToggle : BindableElement
+    public partial class CustomToggle : Toggle
     {
         private const string USSClassName = "custom-toggle";
 
-        private Label m_label;
-
         private VisualElement m_toggleButton;
         
+
+        /*
         private bool m_isLabelLeft = true;
 
 
@@ -32,75 +32,48 @@ namespace Concept.UI
                 MarkDirtyRepaint();
             }
         }
+     */
 
-        [UxmlAttribute("text")] 
-        public string text { get => m_label.text; set => m_label.text = value; }
-        private bool m_isChecked = false;
-        [Bindable(BindableSupport.Yes)][UxmlAttribute("checked")]
-        public bool IsChecked
+        public void SetValue(bool value)
         {
-            get => m_isChecked;
-            set
-            {
-                if (m_isChecked == value) return;
-
-                var previousValue = m_isChecked;
-                m_isChecked = value;
-
-                // 1. Atualiza o visual (chama o método auxiliar)
-                UpdateVisualState();
-
-                // 2. Notifica listeners customizados
-                OnToggleChanged?.Invoke(value);
-
-                // 3. Dispara evento para o sistema de binding
-                if (panel != null)
-                {
-                    using (ChangeEvent<bool> evt = ChangeEvent<bool>.GetPooled(previousValue, value))
-                    {
-                        evt.target = this;
-                        SendEvent(evt);
-                    }
-                }
-
-                // 4. Marca para repaint (APENAS UMA VEZ)
-                MarkDirtyRepaint();
-            }
+            this.value = value;
+            UpdateVisualState();
+            OnToggleChanged?.Invoke(value);
         }
 
-        // MÉTODO AUXILIAR QUE VOCÊ PRECISA CRIAR
         private void UpdateVisualState()
         {
             if (m_toggleButton == null) return;
 
-            // Atualiza a direção do flex
-            m_toggleButton.style.flexDirection = m_isChecked ?
+            // Atualiza a direï¿½ï¿½o do flex
+            m_toggleButton.style.flexDirection = value ?
                 FlexDirection.RowReverse :
                 FlexDirection.Row;
 
             // Atualiza as classes CSS
-            if (m_isChecked)
+            if (value)
             {
-                m_label.AddToClassList("active");
+                labelElement.AddToClassList("active");
                 m_toggleButton.Q<VisualElement>("ToggleIco").AddToClassList("active");
             }
             else
             {
-                m_label.RemoveFromClassList("active");
+                labelElement.RemoveFromClassList("active");
                 m_toggleButton.Q<VisualElement>("ToggleIco").RemoveFromClassList("active");
             }
         }
 
-        // MÉTODO NECESSÁRIO PARA BINDING
+        /*
+        // Mï¿½TODO NECESSï¿½RIO PARA BINDING
         public void SetValueWithoutNotify(bool newValue)
         {
-            if (m_isChecked == newValue) return;
+            if (value == newValue) return;
 
-            m_isChecked = newValue;
+            value = newValue;
             UpdateVisualState();  // Apenas atualiza visual, SEM disparar eventos
             MarkDirtyRepaint();
         }
-
+        */
 
         [UxmlAttribute("collection")]
         public string collection { get; set; } = "UI";
@@ -126,23 +99,31 @@ namespace Concept.UI
             var visualTree = Resources.Load<VisualTreeAsset>("Widgets/CustomToggle");
             if (visualTree == null)
             {
-                Debug.LogError("CustomToggle não encontrado em Resources!");
+                Debug.LogError("CustomToggle nï¿½o encontrado em Resources!");
                 return;
             }
 
             visualTree.CloneTree(this);
-            
-            
-            m_label = this.Q<Label>("Label");
+
+            var checkMark = this.Q<VisualElement>("unity-checkmark").parent;
+            checkMark.style.display = DisplayStyle.None;
             m_toggleButton = this.Q<VisualElement>("ToggleButton");
 
             m_toggleButton.RegisterCallback<ClickEvent>(evt =>
             {
-                IsChecked = !IsChecked;
+                value = !value;
+            });
+
+
+
+            this.RegisterValueChangedCallback((evt) => {
+
+                UpdateVisualState();
+                OnToggleChanged?.Invoke(value);
             });
 
             styleSheets.Add(Resources.Load<StyleSheet>("Widgets/"+ GetType().Name + "Styles"));
-           
+
             /*
             LocalizationSettings.SelectedLocaleChanged += UpdateText;
             RegisterCallback<DetachFromPanelEvent>(evt =>
@@ -151,7 +132,16 @@ namespace Concept.UI
             });
             */
 
+            this.RegisterCallback<AttachToPanelEvent>(evt => { 
+            
+                UpdateVisualState();
+            
+            });
+
         }
+
+
+        
 
         /*
         private void UpdateText(Locale locale)
@@ -164,47 +154,23 @@ namespace Concept.UI
         */
 
 
-        private void UpdateLabelPosition()
-        {
-            if (this == null) return;
-            var labelParent = m_label.parent;
-            var parent = m_toggleButton.parent;
-
-
-
-            labelParent.Remove(m_label);
-            parent.Remove(m_toggleButton);
-
-            if (IsLabelLeft)
-            {
-                labelParent.Add(m_label);
-                parent.Add(m_toggleButton);
-            }
-            else
-            {
-                parent.Add(m_toggleButton);
-                labelParent.Add(m_label);
-            }
-        }
-
-
         public void AnimateToPosition(float targetX, float targetY, int durationMs = 300,
     Action onComplete = null, Func<float, float> easing = null)
         {
-            // 1. Primeiro forçamos a posição absoluta
+            // 1. Primeiro forï¿½amos a posiï¿½ï¿½o absoluta
             style.position = Position.Absolute;
 
-            // 2. Pegamos a posição VISUAL atual relativa ao parent
+            // 2. Pegamos a posiï¿½ï¿½o VISUAL atual relativa ao parent
             var currentPos = this.GetRelativePositionToParent();
 
-            // 3. Definimos explicitamente a posição inicial
+            // 3. Definimos explicitamente a posiï¿½ï¿½o inicial
             style.left = currentPos.x;
             style.top = currentPos.y;
 
-            // 4. Esperamos o próximo frame para garantir que o layout foi atualizado
+            // 4. Esperamos o prï¿½ximo frame para garantir que o layout foi atualizado
             schedule.Execute(() =>
             {
-                // 5. Agora sim iniciamos a animação
+                // 5. Agora sim iniciamos a animaï¿½ï¿½o
                 this.experimental.animation
                     .Start(new StyleValues
                     {
@@ -213,15 +179,15 @@ namespace Concept.UI
                     }, durationMs)
                     .Ease(easing ?? Easing.OutQuad)
                     .OnCompleted(() => onComplete?.Invoke());
-            }).StartingIn(0); // Próximo frame
+            }).StartingIn(0); // Prï¿½ximo frame
         }
 
-        // Método auxiliar para pegar posição relativa
+        // Mï¿½todo auxiliar para pegar posiï¿½ï¿½o relativa
         private Vector2 GetRelativePositionToParent()
         {
             if (parent == null) return Vector2.zero;
 
-            // Calcula a posição relativa considerando transforms e pivots
+            // Calcula a posiï¿½ï¿½o relativa considerando transforms e pivots
             var worldPos = worldTransform.MultiplyPoint3x4(Vector3.zero);
             var parentWorldPos = parent.worldTransform.MultiplyPoint3x4(Vector3.zero);
 

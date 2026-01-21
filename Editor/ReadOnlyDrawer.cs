@@ -63,7 +63,7 @@ namespace Concept.UI
             }
             else
             {
-                // Para propriedades não-array, desenha como readonly
+                // Para propriedades nï¿½o-array, desenha como readonly
                 EditorGUI.BeginDisabledGroup(true);
                 EditorGUI.PropertyField(position, property, label, true);
                 EditorGUI.EndDisabledGroup();
