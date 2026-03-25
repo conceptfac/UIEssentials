@@ -1,20 +1,17 @@
 {
   "name": "com.conceptfactory.ui.essentials",
   "displayName": "Concept Factory - UI Essentials",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "tool",
   "unity": "6000.0",
   "unityRelease": "43f1",
   "description": "A Unity UI Tool Kit add-ons.\n\n https://github.com/conceptfac/UIEssentials.git",
-  "documentationUrl": "",
-  "changelogUrl": "",
   "license": "Source-Available \u2013 No Modification",
   "licensesUrl": "SEE LICENSE FILE",
   "keywords": [],
   "author": {
     "name": "Concept Factory",
-    "email": "conceptfac@gmail.com",
-    "url": ""
+    "email": "conceptfac@gmail.com"
   },
   "repository": {
     "type": "git",

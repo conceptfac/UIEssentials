@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.conceptfactory.ui.essentials/Editor/ScenePicker/ScenePickerPopup.uss?fileID=7433441132597879392&amp;guid=4721bad788574ef08ed0c48e5a12b719&amp;type=3#ScenePickerPopup"/>
+    <ui:VisualElement name="scenePickerRoot" class="scene-picker-root">
+        <ui:Label name="titleLabel" text="Select Default Scene" class="scene-picker-title"/>
+        <ui:ScrollView name="sceneScroll" class="scene-picker-scroll">
+            <ui:Foldout name="buildScenesFoldout" text="Build Scenes" value="true">
+                <ui:VisualElement name="buildScenesList" class="scene-picker-list"/>
+            </ui:Foldout>
+            <ui:Foldout name="projectScenesFoldout" text="Project Scenes" value="true">
+                <ui:VisualElement name="projectScenesList" class="scene-picker-list"/>
+            </ui:Foldout>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,113 @@
+.scene-picker-root {
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 340px;
+    background-color: rgb(48, 43, 43);
+}
+
+.scene-picker-title {
+    font-size: 13px;
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+    color: rgb(220, 230, 235);
+    letter-spacing: 0.2px;
+}
+
+.scene-picker-scroll {
+    flex-grow: 1;
+}
+
+.scene-picker-list {
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+.scene-picker-item {
+    flex-direction: column;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-bottom: 2px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgba(255, 255, 255, 0.06);
+    border-right-color: rgba(255, 255, 255, 0.06);
+    border-top-color: rgba(255, 255, 255, 0.06);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.035);
+    cursor: pointer;
+}
+
+.scene-picker-item-alt {
+    background-color: rgba(255, 255, 255, 0.055);
+}
+
+.scene-picker-item-hover {
+    background-color: rgba(84, 125, 170, 0.18);
+    border-left-color: rgba(105, 145, 196, 0.28);
+    border-right-color: rgba(105, 145, 196, 0.28);
+    border-top-color: rgba(105, 145, 196, 0.28);
+    border-bottom-color: rgba(105, 145, 196, 0.28);
+}
+
+.scene-picker-item-current {
+    background-color: rgba(62, 111, 187, 0.22);
+    border-left-color: rgba(90, 150, 230, 0.45);
+    border-right-color: rgba(90, 150, 230, 0.45);
+    border-top-color: rgba(90, 150, 230, 0.45);
+    border-bottom-color: rgba(90, 150, 230, 0.45);
+}
+
+.scene-picker-item-missing {
+    background-color: rgba(165, 74, 74, 0.14);
+}
+
+.scene-picker-item-title {
+    color: rgb(220, 230, 235);
+    -unity-font-style: bold;
+    flex-grow: 1;
+}
+
+.scene-picker-item-path {
+    margin-top: 3px;
+    margin-left: 1px;
+    font-size: 10px;
+    color: rgba(210, 210, 210, 0.72);
+}
+
+.scene-picker-item-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.scene-picker-item-badge {
+    margin-left: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 9px;
+    color: rgb(255, 228, 228);
+    background-color: rgba(180, 70, 70, 0.4);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.scene-picker-empty {
+    font-size: 11px;
+    color: rgba(210, 210, 210, 0.72);
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
