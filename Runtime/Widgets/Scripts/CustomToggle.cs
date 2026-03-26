@@ -1,38 +1,16 @@
 using System;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
-//[assembly: UxmlNamespacePrefix("Quantum.UI", "custom")]
 
 namespace Concept.UI
 {
-
     [UxmlElement]
     public partial class CustomToggle : Toggle
     {
         private const string USSClassName = "custom-toggle";
 
         private VisualElement m_toggleButton;
-        
-
-        /*
-        private bool m_isLabelLeft = true;
-
-
-        [UxmlAttribute("is-label-left")]
-        public bool IsLabelLeft
-        {
-            get => m_isLabelLeft;
-            set
-            {
-                if (m_isLabelLeft == value) return;
-                m_isLabelLeft = value;
-                UpdateLabelPosition();
-                MarkDirtyRepaint();
-            }
-        }
-     */
 
         public void SetValue(bool value)
         {
@@ -43,51 +21,37 @@ namespace Concept.UI
 
         private void UpdateVisualState()
         {
-            if (m_toggleButton == null) return;
+            if (m_toggleButton == null)
+                return;
 
-            // Atualiza a dire��o do flex
-            m_toggleButton.style.flexDirection = value ?
-                FlexDirection.RowReverse :
-                FlexDirection.Row;
+            VisualElement toggleIcon = m_toggleButton.Q<VisualElement>("ToggleIco");
 
-            // Atualiza as classes CSS
             if (value)
             {
+                m_toggleButton.AddToClassList("on");
+                m_toggleButton.RemoveFromClassList("off");
                 labelElement.AddToClassList("active");
-                m_toggleButton.Q<VisualElement>("ToggleIco").AddToClassList("active");
+                toggleIcon?.AddToClassList("active");
             }
             else
             {
+                m_toggleButton.AddToClassList("off");
+                m_toggleButton.RemoveFromClassList("on");
                 labelElement.RemoveFromClassList("active");
-                m_toggleButton.Q<VisualElement>("ToggleIco").RemoveFromClassList("active");
+                toggleIcon?.RemoveFromClassList("active");
             }
         }
 
-        /*
-        // M�TODO NECESS�RIO PARA BINDING
-        public void SetValueWithoutNotify(bool newValue)
-        {
-            if (value == newValue) return;
-
-            value = newValue;
-            UpdateVisualState();  // Apenas atualiza visual, SEM disparar eventos
-            MarkDirtyRepaint();
-        }
-        */
-
         [UxmlAttribute("collection")]
         public string collection { get; set; } = "UI";
-        private string m_key;
 
+        private string m_key;
 
         [UxmlAttribute("key")]
         public string key
         {
-            get => m_key; set
-            {
-                m_key = value;
-               // UpdateText(LocalizationSettings.SelectedLocale);
-            }
+            get => m_key;
+            set => m_key = value;
         }
 
         public event Action<bool> OnToggleChanged;
@@ -96,82 +60,48 @@ namespace Concept.UI
         {
             AddToClassList(USSClassName);
 
-            var visualTree = Resources.Load<VisualTreeAsset>("Widgets/CustomToggle");
+            VisualTreeAsset visualTree = Resources.Load<VisualTreeAsset>("Widgets/CustomToggle");
             if (visualTree == null)
             {
-                Debug.LogError("CustomToggle n�o encontrado em Resources!");
+                Debug.LogError("CustomToggle not found in Resources.");
                 return;
             }
 
             visualTree.CloneTree(this);
 
-            var checkMark = this.Q<VisualElement>("unity-checkmark").parent;
-            checkMark.style.display = DisplayStyle.None;
+            VisualElement checkMark = this.Q<VisualElement>("unity-checkmark")?.parent;
+            if (checkMark != null)
+                checkMark.style.display = DisplayStyle.None;
+
             m_toggleButton = this.Q<VisualElement>("ToggleButton");
-
-            m_toggleButton.RegisterCallback<ClickEvent>(evt =>
+            if (m_toggleButton != null)
             {
-                value = !value;
-            });
+                m_toggleButton.RegisterCallback<ClickEvent>(_ => { value = !value; });
+            }
 
-
-
-            this.RegisterValueChangedCallback((evt) => {
-
+            this.RegisterValueChangedCallback(_ =>
+            {
                 UpdateVisualState();
                 OnToggleChanged?.Invoke(value);
             });
 
-            styleSheets.Add(Resources.Load<StyleSheet>("Widgets/"+ GetType().Name + "Styles"));
+            styleSheets.Add(Resources.Load<StyleSheet>($"Widgets/{GetType().Name}Styles"));
 
-            /*
-            LocalizationSettings.SelectedLocaleChanged += UpdateText;
-            RegisterCallback<DetachFromPanelEvent>(evt =>
-            {
-                LocalizationSettings.SelectedLocaleChanged -= UpdateText;
-            });
-            */
-
-            this.RegisterCallback<AttachToPanelEvent>(evt => { 
-            
-                UpdateVisualState();
-            
-            });
-
+            this.RegisterCallback<AttachToPanelEvent>(_ => { UpdateVisualState(); });
         }
-
-
-        
-
-        /*
-        private void UpdateText(Locale locale)
-        {
-            return;
-            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(collection)) return;
-
-           // m_label.SetLocalizationText(collection, key);
-        }
-        */
-
 
         public void AnimateToPosition(float targetX, float targetY, int durationMs = 300,
-    Action onComplete = null, Func<float, float> easing = null)
+            Action onComplete = null, Func<float, float> easing = null)
         {
-            // 1. Primeiro for�amos a posi��o absoluta
             style.position = Position.Absolute;
 
-            // 2. Pegamos a posi��o VISUAL atual relativa ao parent
-            var currentPos = this.GetRelativePositionToParent();
-
-            // 3. Definimos explicitamente a posi��o inicial
+            Vector2 currentPos = GetRelativePositionToParent();
             style.left = currentPos.x;
             style.top = currentPos.y;
 
-            // 4. Esperamos o pr�ximo frame para garantir que o layout foi atualizado
             schedule.Execute(() =>
             {
-                // 5. Agora sim iniciamos a anima��o
-                this.experimental.animation
+                experimental.animation
                     .Start(new StyleValues
                     {
                         left = targetX,
@@ -179,26 +109,20 @@ namespace Concept.UI
                     }, durationMs)
                     .Ease(easing ?? Easing.OutQuad)
                     .OnCompleted(() => onComplete?.Invoke());
-            }).StartingIn(0); // Pr�ximo frame
+            }).StartingIn(0);
         }
 
-        // M�todo auxiliar para pegar posi��o relativa
         private Vector2 GetRelativePositionToParent()
         {
-            if (parent == null) return Vector2.zero;
+            if (parent == null)
+                return Vector2.zero;
 
-            // Calcula a posi��o relativa considerando transforms e pivots
-            var worldPos = worldTransform.MultiplyPoint3x4(Vector3.zero);
-            var parentWorldPos = parent.worldTransform.MultiplyPoint3x4(Vector3.zero);
+            Vector3 worldPos = worldTransform.MultiplyPoint3x4(Vector3.zero);
+            Vector3 parentWorldPos = parent.worldTransform.MultiplyPoint3x4(Vector3.zero);
 
             return new Vector2(
                 worldPos.x - parentWorldPos.x,
-                worldPos.y - parentWorldPos.y
-            );
+                worldPos.y - parentWorldPos.y);
         }
-
-
-
     }
-
 }
