@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.conceptfactory.ui.essentials/Runtime/Widgets/Resources/Widgets/ElasticSlider/ElasticSliderStyles.uss?fileID=7433441132597879392&amp;guid=5d25bea5e8addd8408d240d799e10f58&amp;type=3#ElasticSliderStyles"/>
+    <ui:VisualElement name="pill" picking-mode="Ignore" class="elastic-slider__pill elastic-slider__pill--horizontal" style="background-image: none; background-color: rgba(0, 0, 0, 0); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;">
+        <ui:VisualElement name="track" picking-mode="Position" class="elastic-slider__track" style="background-image: resource(&quot;Sprites/ElasticSlider&quot;);">
+            <ui:Label name="caption" text="" picking-mode="Ignore" class="elastic-slider__caption"/>
+            <ui:VisualElement name="thumb" picking-mode="Position" class="elastic-slider__thumb" style="background-image: resource(&quot;Sprites/TrackBall&quot;); border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
